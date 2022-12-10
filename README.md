@@ -8,6 +8,8 @@ yarn
 yarn jest
 ```
 
+The test `src/workflows.test.ts` times out, where I'd expect it to pass.
+
 1) Is this the intended behavior?
 2) If so, how should I fix the test?
 3) If not is it fixable?
