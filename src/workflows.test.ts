@@ -48,19 +48,19 @@ describe("when performing w1", () => {
     });
 
     // wait for w1 to complete
-    await worker.runUntil(() =>
-      testEnv.client.workflow.execute(w1, {
+    await worker.runUntil(async () => {
+      await testEnv.client.workflow.execute(w1, {
         workflowId: `w1-${randomUUID()}`,
         taskQueue: "default",
         args: [],
-      })
-    );
+      });
 
-    // wait for w2 to complete
-    // README: test fails here with timeout
-    const handle = testEnv.client.workflow.getHandle("w2-1");
-    await handle.result();
+      // wait for w2 to complete
+      // README: test fails here with timeout
+      const handle = testEnv.client.workflow.getHandle("w2-1");
+      await handle.result();
 
-    expect(testActivities.a2).toHaveBeenCalled();
+      expect(testActivities.a2).toHaveBeenCalled();
+    });
   });
 });
